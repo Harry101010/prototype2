@@ -45,8 +45,6 @@ public class GamePanel extends JPanel implements Runnable{
 	    while (gameThread != null) {
 	        update();
 	        repaint();
-	        
-	        System.out.println(player.getPosition());
 
 	        long remaining = nextDrawTime - System.nanoTime();
 	        long sleepMillis = remaining > 0 ? remaining / 1_000_000L : 0L;
@@ -55,7 +53,6 @@ public class GamePanel extends JPanel implements Runnable{
 	            if (sleepMillis > 0) {
 	                Thread.sleep(sleepMillis);
 	            } else {
-	                // we're behind schedule — yield briefly so we don't spin hard
 	                Thread.yield();
 	            }
 	        } catch (InterruptedException e) {
