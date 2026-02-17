@@ -6,13 +6,14 @@ import java.awt.Graphics;
 import game.GamePanel;
 import game.KeyHandler;
 import interfaces.InputHandler;
-import interfaces.Moveable;
+import interfaces.Movable;
 import interfaces.Renderable;
 import interfaces.Updatable;
 
-public class Player extends Entity implements Updatable, Renderable, Moveable, InputHandler{
-	private int speed;
-	private Color color;
+public class Player extends Entity implements Updatable, Renderable, Movable, InputHandler{
+	private int speed = 0;
+	private Color color = Color.white;
+	private int maxWidth = GamePanel.WIDTH, maxHeight = GamePanel.HEIGHT;
 
 	KeyHandler keyH;
 	
@@ -45,11 +46,11 @@ public class Player extends Entity implements Updatable, Renderable, Moveable, I
 		g.fillRect(x, y, width, height);
 	}
 	
-	protected void restrict() {
-		if(x < 0) x = 0;
-		if(y < 0) y = 0;
-		if(x + width > GamePanel.WIDTH) x = GamePanel.WIDTH - width;
-		if(y + height > GamePanel.HEIGHT) y = GamePanel.HEIGHT - height;		
+	private void restrict() {
+		x = x < 0 ? 0 : x;
+		y = y < 0 ? 0 : y;
+		x = x + width > maxWidth ? maxWidth - width : x;
+		y = y + height > maxHeight ? maxHeight - height : y;
 	}
 
 	public int getSpeed() {return speed;}
