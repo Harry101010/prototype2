@@ -9,8 +9,8 @@ import javax.swing.JPanel;
 import entities.Player;
 
 public class GamePanel extends JPanel implements Runnable{
-	public final int WIDTH = 500;
-	public final int HEIGHT = 450;
+	public static final int WIDTH = 500;
+	public static final int HEIGHT = 450;
 	
 	private final int FPS = 60;
 	
@@ -25,7 +25,7 @@ public class GamePanel extends JPanel implements Runnable{
 		this.addKeyListener(keyH);
 		this.setFocusable(true);
 		
-		player = new Player(this, keyH);
+		player = new Player(keyH);
 		player.setSpeed(5);	
 		player.setSize(50, 50);
 		player.setColor(Color.blue);

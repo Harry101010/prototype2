@@ -5,17 +5,18 @@ import java.awt.Graphics;
 
 import game.GamePanel;
 import game.KeyHandler;
+import interfaces.InputHandler;
 import interfaces.Moveable;
+import interfaces.Renderable;
+import interfaces.Updatable;
 
-public class Player extends Entity implements Moveable{
+public class Player extends Entity implements Updatable, Renderable, Moveable, InputHandler{
 	private int speed;
 	private Color color;
-	
-	GamePanel gp;
+
 	KeyHandler keyH;
 	
-	public Player(GamePanel gp, KeyHandler keyH) {
-		this.gp = gp;
+	public Player(KeyHandler keyH) {
 		this.keyH = keyH;
 	}
 	
@@ -24,6 +25,7 @@ public class Player extends Entity implements Moveable{
 	@Override public void moveUp()    {y -= speed;}
 	@Override public void moveDown()  {y += speed;}
 	
+	@Override
 	public void handleInput() {
 		if(keyH.upPressed) moveUp();
 		if(keyH.downPressed) moveDown();
@@ -31,23 +33,25 @@ public class Player extends Entity implements Moveable{
 		if(keyH.leftPressed) moveLeft();		
 	}
 	
-	public void restrict() {
-		if(x < 0) x = 0;
-		if(y < 0) y = 0;
-		if(x + width > gp.WIDTH) x = gp.WIDTH - width;
-		if(y + height > gp.HEIGHT) y = gp.HEIGHT - height;		
-	}
-	
+	@Override
 	public void update() {
 		handleInput();
 		restrict();
 	}
 	
+	@Override
 	public void draw(Graphics g) {
 		g.setColor(color);
 		g.fillRect(x, y, width, height);
 	}
 	
+	protected void restrict() {
+		if(x < 0) x = 0;
+		if(y < 0) y = 0;
+		if(x + width > GamePanel.WIDTH) x = GamePanel.WIDTH - width;
+		if(y + height > GamePanel.HEIGHT) y = GamePanel.HEIGHT - height;		
+	}
+
 	public int getSpeed() {return speed;}
 	public void setSpeed(int speed) {this.speed = speed < 0 ? 0 : speed;}
 	
