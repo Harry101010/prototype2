@@ -15,8 +15,15 @@ public class Entity {
 	}
 	
 	public void setSize(int width, int height) {
-		this.width = width < 0 ? 0 : width;
-		this.height = height < 0 ? 0 : height;
+		this.width = Math.max(0, width);
+		this.height = Math.max(0, height);
+	}
+
+	public boolean intersects(Entity other) {
+		return x < other.x + other.width &&
+		       x + width > other.x &&
+		       y < other.y + other.height &&
+		       y + height > other.y;
 	}
 
   private int prevX = 0, prevY = 0;

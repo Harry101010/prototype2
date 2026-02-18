@@ -11,8 +11,8 @@ import interfaces.Renderable;
 import interfaces.Updatable;
 
 public class Player extends Entity implements Updatable, Renderable, Movable, InputHandler{
-	private int speed = 0;
-	private Color color = Color.white;
+	private int speed;
+	private Color color;
 	private int maxWidth = GamePanel.WIDTH, maxHeight = GamePanel.HEIGHT;
 
 	KeyHandler keyH;
@@ -47,14 +47,12 @@ public class Player extends Entity implements Updatable, Renderable, Movable, In
 	}
 	
 	private void restrict() {
-		x = x < 0 ? 0 : x;
-		y = y < 0 ? 0 : y;
-		x = x + width > maxWidth ? maxWidth - width : x;
-		y = y + height > maxHeight ? maxHeight - height : y;
+		x = Math.max(0, Math.min(x, maxWidth - width));
+		y = Math.max(0, Math.min(y, maxHeight - height));
 	}
 
 	public int getSpeed() {return speed;}
-	public void setSpeed(int speed) {this.speed = speed < 0 ? 0 : speed;}
+	public void setSpeed(int speed) {this.speed = Math.max(0, speed);}
 	
 	public Color getColor() {return color;}
 	public void setColor(Color color) {this.color = color;}
