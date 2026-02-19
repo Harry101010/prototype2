@@ -4,14 +4,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
 
 import javax.swing.JPanel;
 
-import entities.Enemy;
 import entities.Player;
 import models.EnemyModel;
 
