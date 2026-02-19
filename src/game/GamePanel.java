@@ -91,6 +91,6 @@ public class GamePanel extends JPanel implements Runnable{
 		if (!gameOver) return;
 		g.setColor(Color.white);
 		g.setFont(new Font("Arial", Font.BOLD, 24));
-		g.drawString("Game Over", WIDTH / 2 - 70, HEIGHT / 2);
+		g.drawString("Get Lost.", WIDTH / 2 - 70, HEIGHT / 2);
 	}
 }

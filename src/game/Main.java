@@ -7,7 +7,6 @@ public class Main {
 	public static void main(String[] args) {
 		JFrame window = new JFrame("Dodge the Blocks");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setLocationRelativeTo(null);
 		
 		ImageIcon icon = new ImageIcon("icon.png");
 		window.setIconImage(icon.getImage());
@@ -16,6 +15,7 @@ public class Main {
 		window.add(gamePanel);
 		window.pack();
 		
+		window.setLocationRelativeTo(null);
 		window.setResizable(false);
 		window.setVisible(true);
 		
