@@ -2,7 +2,6 @@ package entities;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Random;
 
 import interfaces.Movable;
 import interfaces.Renderable;
